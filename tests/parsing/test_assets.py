@@ -1,5 +1,4 @@
-import unittest2 as unittest
-
+from tests.compat import unittest
 from tests.utils import make_api_result
 
 from evelink.parsing import assets as evelink_a
@@ -7,7 +6,7 @@ from evelink.parsing import assets as evelink_a
 class AssetsTestCase(unittest.TestCase):
 
     def test_parse_assets(self):
-        api_result = make_api_result("corp/assets.xml")
+        api_result, _, _ = make_api_result("corp/assets.xml")
 
         result = evelink_a.parse_assets(api_result)
 
@@ -32,7 +31,8 @@ class AssetsTestCase(unittest.TestCase):
                      'location_flag': 0,
                      'location_id': 30003719,
                      'packaged': False,
-                     'quantity': 1}],
+                     'quantity': 1,
+                     'raw_quantity': -1}],
                 'location_id': 30003719},
             67000050: {
                 'contents': [
@@ -41,5 +41,13 @@ class AssetsTestCase(unittest.TestCase):
                      'location_flag': 0,
                      'location_id': 67000050,
                      'packaged': False,
-                     'quantity': 1}],
+                     'quantity': 1,
+                     'raw_quantity': -1},
+                    {'id': 374680079,
+                     'item_type_id': 973,
+                     'location_flag': 0,
+                     'location_id': 67000050,
+                     'packaged': False,
+                     'quantity': 1,
+                     'raw_quantity': -2}],
                 'location_id': 67000050}})
